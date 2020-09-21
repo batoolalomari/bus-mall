@@ -55,21 +55,30 @@ new BusMall('wine-glass', 'img/wine-glass.jpg');
 var leftIndex;
 var rightIndex;
 var middleIndex;
+var includeImage=[];
 
 function generateRandomImg() {
     leftIndex = Math.floor(Math.random() * allProduct.length);
     rightIndex = Math.floor(Math.random() * allProduct.length);
     middleIndex = Math.floor(Math.random() * allProduct.length);
+
+    includeImage=[];
      
          while(leftIndex===rightIndex||leftIndex===middleIndex
           ||rightIndex===leftIndex||rightIndex===middleIndex
           ||middleIndex===leftIndex||middleIndex===rightIndex)
+          
          {
-             
-     
+
+
+
         leftIndex=Math.floor(Math.random()*allProduct.length) ;
         rightIndex=Math.floor(Math.random()*allProduct.length) ;
         middleIndex=Math.floor(Math.random()*allProduct.length) ;
+        
+        
+        
+
        }
 
         displayImag(leftIndex, middleIndex, rightIndex);
