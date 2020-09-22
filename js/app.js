@@ -5,13 +5,16 @@ var section = document.getElementById('BusMall');
 var left = document.getElementById('left_img');
 var middle = document.getElementById('middle_img');
 var right = document.getElementById('right_img');
+var allProduct=[];
 
-var allProduct = [];
+
+
+
 var arr = [];
 var leftImage;
 var middleImage;
 var rightImage;
-
+var  allProduct;
 var totalClicks = 0;
 
 
@@ -19,18 +22,56 @@ var totalClicks = 0;
 var totalNumofProductclick = [];
 var totalNumOfClick = [];
 
+
+
 function BusMall(pName, iPath) {
     this.pName = pName;
     this.iPath = iPath;
     this.numOfClick = 0;
+
     this.numofProductclick = 0;
     allProduct.push(this);
     arr.push(this.pName);
 
+    
+  
+    //JSON.parse(allProduct);
+    //console.log(JSON.parse(allProduct));
+    //console.log(localStorage.getItem("All Product"));
 
 
 
 }
+
+
+if(!localStorage.getItem('All Product'))
+{
+    allProduct = [];
+    console.log(allProduct);
+}
+
+
+
+/*if(localStorage.getItem('All Product'))
+{
+  /*  allProduct=JSON.parse(localStorage.getItem('All Product'));
+
+    console.log(allProduct);
+     
+   //console.log(localArr);
+    /*for(var i=0;i<allProduct.length;i++)
+    {
+        
+      allProduct[i]=new  BusMall(allProduct[i].pName,allProduct[i].iPath);
+    }
+  
+}
+else
+{
+    
+     allProduct = [];
+     console.log(allProduct);
+}*/
 
 new BusMall('Bag', 'img/bag.jpg');
 new BusMall('banana', 'img/banana.jpg');
@@ -52,18 +93,23 @@ new BusMall('unicorn', 'img/unicorn.jpg');
 new BusMall('usb', 'img/usb.gif');
 new BusMall('water-can', 'img/water-can.jpg');
 new BusMall('wine-glass', 'img/wine-glass.jpg');
-var leftIndex;
-var rightIndex;
-var middleIndex;
+
+
+var leftIndex=-1;
+var rightIndex=-1;
+var middleIndex=-1;
 
 function generateRandomImg() {
+
+    var arr=[leftIndex,middleIndex,rightIndex];
     leftIndex = Math.floor(Math.random() * allProduct.length);
     rightIndex = Math.floor(Math.random() * allProduct.length);
     middleIndex = Math.floor(Math.random() * allProduct.length);
      
          while(leftIndex===rightIndex||leftIndex===middleIndex
           ||rightIndex===leftIndex||rightIndex===middleIndex
-          ||middleIndex===leftIndex||middleIndex===rightIndex)
+          ||middleIndex===leftIndex||middleIndex===rightIndex||
+          arr.includes(leftIndex)||arr.includes(rightIndex)||arr.includes(middleIndex))
          {
              
      
@@ -85,6 +131,8 @@ function generateRandomImg() {
         leftImage.numofProductclick++;
         middleImage.numofProductclick++;
         rightImage.numofProductclick++;
+
+
 
 
 
@@ -149,17 +197,69 @@ function generateRandomImg() {
 
 
             cliced.numOfClick++;
-
             totalClicks++;
             generateRandomImg();
         }
-        if (totalClicks >= 25) {
+        if (totalClicks >= 10) {
             section.removeEventListener('click', clickImg);
             displayResults();
             chart();
+            stor();
 
+            
+
+           
         }
     }
+
+
+function stor()
+{
+     var x=JSON.parse(localStorage.getItem('All Product'));
+
+          for(var i=0;i<allProduct.length;i++)
+          {
+              
+              x[i].numOfClick+=allProduct[i].numOfClick;
+              x[i].numofProductclick+=allProduct[i].numofProductclick;
+                
+          }
+         localStorage.setItem('All Product',JSON.stringify(x));
+
+
+
+
+
+   /* var ollArr=JSON.parse(localStorage.getItem('All Product'));
+    var x=JSON.parse(localStorage.getItem('All Product')).numOfClick;
+    var y=JSON.parse(localStorage.getItem('All Product')).numofProductclick;
+
+    oldArr=allProduct;
+    localStorage.setItem('All Product',JSON.stringify(ollArr));  
+
+         for(var i=0;i<allProduct.length;i++)
+          {
+            allProduct[i].numOfClick+=x[i].numOfClick;
+            allProduct[i].numofProductclick+=y[i].numofProductclick;
+
+
+              /*allProduct[i].numOfClick+=x[i].numOfClick;
+              allProduct[i].numofProductclick+=y[i].numofProductclick;*/
+           /* x[i].numOfClick+=allProduct[i].numOfClick;
+            y[i].numofProductclick+=allProduct[i].numofProductclick;*/
+           //  allProduct[i]=new BusMall(allProduct[i].pName,allProduct[i].iPath)
+            
+         // }
+         // localStorage.setItem('All Product',JSON.stringify(allProduct));
+    
+       
+      }
+
+
+
+
+
+
 
 
     function displayResults() {
@@ -175,6 +275,8 @@ function generateRandomImg() {
 
 
         }
+    
+        localStorage.setItem('All Product',JSON.stringify(allProduct));
 
 
     }
@@ -235,3 +337,4 @@ function generateRandomImg() {
         });
     }
 
+   // generateRandomImg();
