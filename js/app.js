@@ -200,7 +200,7 @@ function generateRandomImg() {
             totalClicks++;
             generateRandomImg();
         }
-        if (totalClicks >= 10) {
+        if (totalClicks >= 25) {
             section.removeEventListener('click', clickImg);
             displayResults();
             chart();
