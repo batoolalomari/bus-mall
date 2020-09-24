@@ -318,16 +318,20 @@ function stor()
                 labels: arr,
                 datasets: [{
                     label: 'My First dataset',
-                    backgroundColor: 'rgb(255, 99, 132)',
+                    backgroundColor: '#006E6D',
                     borderColor: 'rgb(255, 99, 132)',
                     borderWidth: 1,
+                    
+                     margin: "4pc",
                     data: totalNumOfClick
                 },
                 {
                     label: 'My First dataset',
-                    backgroundColor: 'rgb(12, 250, 0)',
+                    backgroundColor: 'rgb(255, 99, 132)',
                     borderColor: 'rgb(255, 99, 132)',
                     borderWidth: 1,
+                    
+                    margin: "4pc",
                     data: totalNumofProductclick
                 }]
             },

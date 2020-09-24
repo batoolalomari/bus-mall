@@ -11,10 +11,15 @@
     margin: 10px;
     border-radius: 5px;
   }
+  element.style {
+    display: block;
+    width: 1000px;
+    height: 300px;
+}
 
   header{
     background-color:#006E6D;
-    background-image: url("https://lh3.googleusercontent.com/proxy/vY7Rwy0iEupu7s0z3ubUi2yLb-qV05MQTafzLNEfB0RSROID8bNhb_yN5iHjzZaqHlJO9ePZN13eF6zwOhlskeuC08A5ONuwsT2KXEs");
+    background-image: url("https://i.pinimg.com/originals/e3/9e/94/e39e946cbfa7837b8098d41dad288e54.gif");
     color: #006E6D;
     font-size: 4pc;
     font-family: 'Times New Roman', Times, serif;
